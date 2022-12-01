@@ -1,14 +1,19 @@
 const express = require('express')
 const app = express()
 const port = 8080
-let dict = {}
+let kvStore = {}
+
+app.get('/isAlive', (req, res) => {
+    res.send("Boss is always fine: Nodejs")
+})
+
 app.get('/find', (req, res) => {
     key = req.query.key
-    if(dict[key] == null) {
+    if(kvStore[key] == null) {
         res.status(400).send("Error! key is not correct")
         return;
     }
-    res.send(dict[key])
+    res.send(kvStore[key])
 })
 
 app.get('/insert', (req, res) => {
@@ -18,8 +23,8 @@ app.get('/insert', (req, res) => {
         res.status(400).send("Error! value is not correct")
         return;
     }
-    dict[key] =  value
-    res.send(dict[key])
+    kvStore[key] =  value
+    res.send(kvStore[key])
 })
 
 app.listen(port, () => {
