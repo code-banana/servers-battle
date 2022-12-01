@@ -8,6 +8,5 @@ RUN go mod download
 COPY ./ ./
 
 EXPOSE 8080
-RUN echo $
 
-CMD go run server.go    
+CMD go run .
